@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 function TheButton(props) {
   return (
@@ -11,4 +11,4 @@ function TheButton(props) {
   );
 }
 
-export default TheButton;
+export default TheButton
