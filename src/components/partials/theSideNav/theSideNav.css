@@ -1,0 +1,23 @@
+nav {
+  background: #282c34;
+  border-top: 1px solid #e1e4e8;
+  bottom: 0;
+  color: #fff;
+  height: calc(100% - 50px);
+  left: 0;
+  position: fixed;
+  width: 250px;
+}
+
+.v-nav-link {
+  color: #fff;
+  font-size: 18px;
+  padding: 15px 10px;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.v-nav-link:hover {
+  background: rgba(0, 0, 0, 0.3);
+  color: #ccc;
+}
