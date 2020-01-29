@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function TheRadio(props) {
   const id = `radio_${props.name}_${props.label}`
@@ -17,7 +18,15 @@ function TheRadio(props) {
         {props.label}
       </label>
     </div>
-  );
+  )
 }
 
-export default TheRadio;
+TheRadio.propTypes = {
+  label: PropTypes.String,
+  name: PropTypes.String,
+  checked: PropTypes.bool,
+  value: PropTypes.node,
+  onChange: PropTypes.func,
+}
+
+export default TheRadio

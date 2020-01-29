@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function TheSelect(props) {
   return (
@@ -9,10 +10,21 @@ function TheSelect(props) {
         value={props.value}
         onChange={props.onChange}
       >
-        {props.options.map(value => <option value={value}>{value}</option>)}
+        {props.options.map((value, idx) => (
+          <option value={value} key={idx}>
+            {value}
+          </option>
+        ))}
       </select>
     </div>
-  );
+  )
 }
 
-export default TheSelect;
+TheSelect.propTypes = {
+  label: PropTypes.String,
+  value: PropTypes.String,
+  onChange: PropTypes.func,
+  options: PropTypes.array,
+}
+
+export default TheSelect

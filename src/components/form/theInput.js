@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 function TheInput(props) {
   const handleChange = e => {
@@ -7,9 +8,7 @@ function TheInput(props) {
 
   return (
     <div className="form-group">
-      <label>
-        {props.label}
-      </label>
+      <label>{props.label}</label>
       <input
         type={props.type || 'text'}
         className="form-control"
@@ -17,7 +16,14 @@ function TheInput(props) {
         value={props.value}
       />
     </div>
-  );
+  )
 }
 
-export default TheInput;
+TheInput.propTypes = {
+  label: PropTypes.String,
+  type: PropTypes.String,
+  value: PropTypes.node,
+  onChange: PropTypes.func,
+}
+
+export default TheInput
