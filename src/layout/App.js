@@ -1,6 +1,6 @@
 import React from 'react'
-import TheHeader from 'components/partials/theHeader/theHeader'
-import TheSideNav from 'components/partials/theSideNav/theSideNav'
+import TheHeader from 'components/partials/theHeader'
+import TheSideNav from 'components/partials/theSideNav'
 import MyRoutes from 'routes'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 

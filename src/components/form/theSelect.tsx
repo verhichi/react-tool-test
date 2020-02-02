@@ -1,14 +1,24 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { ChangeEvent } from 'react'
 
-function TheSelect(props) {
+interface TheSelectProps {
+  value: string
+  label: string
+  onChange: (value: string) => void
+  options: Array<string>
+}
+
+function TheSelect(props: TheSelectProps) {
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    props.onChange(e.target.value)
+  }
+
   return (
     <div className="form-group">
       <label>{props.label}</label>
       <select
         className="form-control"
         value={props.value}
-        onChange={props.onChange}
+        onChange={handleChange}
       >
         {props.options.map((value, idx) => (
           <option value={value} key={idx}>
@@ -18,13 +28,6 @@ function TheSelect(props) {
       </select>
     </div>
   )
-}
-
-TheSelect.propTypes = {
-  label: PropTypes.String,
-  value: PropTypes.String,
-  onChange: PropTypes.func,
-  options: PropTypes.array,
 }
 
 export default TheSelect

@@ -1,18 +1,23 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, ChangeEvent } from 'react'
 
-function TheFileInput(props) {
+interface TheFileInputProps {
+  label: string
+  onChange: (value: string) => void
+}
+
+function TheFileInput(props: TheFileInputProps) {
   const [text, setText] = useState('')
 
-  const handleChange = e => {
-    const file = e.target.files[0]
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return
 
+    const file = e.target.files[0]
     const reader = new FileReader()
     reader.readAsDataURL(file)
 
     reader.onload = () => {
       setText(file.name)
-      props.onChange(reader.result)
+      props.onChange(reader.result as string)
     }
   }
 
@@ -27,11 +32,6 @@ function TheFileInput(props) {
       <label className="custom-file-label">{text || 'Select File'}</label>
     </div>
   )
-}
-
-TheFileInput.propTypes = {
-  label: PropTypes.String,
-  onChange: PropTypes.func,
 }
 
 export default TheFileInput
