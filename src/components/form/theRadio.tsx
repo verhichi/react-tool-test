@@ -1,8 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { ChangeEvent } from 'react'
 
-function TheRadio(props) {
+interface TheRadioProps {
+  label: string
+  name: string
+  checked: boolean
+  value: string
+  onChange: (value: string) => void
+}
+
+function TheRadio(props: TheRadioProps) {
   const id = `radio_${props.name}_${props.label}`
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    props.onChange(e.target.value)
+  }
+
   return (
     <div className="custom-control custom-radio">
       <input
@@ -12,21 +23,13 @@ function TheRadio(props) {
         className="custom-control-input"
         checked={props.checked}
         value={props.value}
-        onChange={props.onChange}
+        onChange={handleChange}
       />
       <label className="custom-control-label" htmlFor={id}>
         {props.label}
       </label>
     </div>
   )
-}
-
-TheRadio.propTypes = {
-  label: PropTypes.String,
-  name: PropTypes.String,
-  checked: PropTypes.bool,
-  value: PropTypes.node,
-  onChange: PropTypes.func,
 }
 
 export default TheRadio

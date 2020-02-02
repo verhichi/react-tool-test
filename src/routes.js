@@ -1,6 +1,6 @@
-import MyCropper from 'pages/crop/myCropper/myCropper'
-import Croppie from 'pages/crop/croppie/croppie'
-import Cropper from 'pages/crop/cropper/cropper'
+import MyCropper from 'pages/crop/myCropper'
+import Croppie from 'pages/crop/croppie'
+import Cropper from 'pages/crop/cropper'
 
 export default [
   {

@@ -1,8 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { ChangeEvent } from 'react'
 
-function TheInput(props) {
-  const handleChange = e => {
+interface TheInputProps {
+  label: string
+  type?: string
+  value: string
+  onChange: (value: string) => void
+}
+
+function TheInput(props: TheInputProps) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     props.onChange(e.target.value)
   }
 
@@ -17,13 +23,6 @@ function TheInput(props) {
       />
     </div>
   )
-}
-
-TheInput.propTypes = {
-  label: PropTypes.String,
-  type: PropTypes.String,
-  value: PropTypes.node,
-  onChange: PropTypes.func,
 }
 
 export default TheInput

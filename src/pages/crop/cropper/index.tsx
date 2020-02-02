@@ -2,35 +2,37 @@ import React, { useState, useEffect, useRef } from 'react'
 import CropperJS from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 import './cropper.css'
+import { getRoundedCanvas } from './getRoundedCanvas'
 import TheButton from 'components/form/theButton'
 import TheInput from 'components/form/theInput'
 import TheFileInput from 'components/form/theFileInput'
 import TheRadio from 'components/form/theRadio'
 
 function Cropper() {
-  const cropper = useRef(null)
+  const cropper = useRef<Cropper | null>(null)
   const [uploadType, setUploadType] = useState('url')
   const [url, setUrl] = useState('')
   const [croppedUrl, setCroppedUrl] = useState('')
 
   useEffect(() => {
-    cropper.current = new CropperJS(document.querySelector('.v-cropper'), {
+    const el: HTMLImageElement = document.querySelector('.v-cropper') as HTMLImageElement
+    cropper.current = new CropperJS(el, {
       aspectRatio: 1,
       zoomable: false,
     })
   }, [])
 
-  const handleUploadTypeChange = e => {
-    setUploadType(e.target.value)
+  const handleUploadTypeChange = (value: string) => {
+    setUploadType(value)
   }
 
-  const handleUrlChange = e => {
-    setUrl(e)
-    cropper.current.replace(e)
+  const handleUrlChange = (value: string) => {
+    setUrl(value)
+    cropper.current?.replace(value)
   }
 
   const handleClick = () => {
-    const croppedImg = cropper.current.getCroppedCanvas()
+    const croppedImg = cropper.current?.getCroppedCanvas()
     setCroppedUrl(getRoundedCanvas(croppedImg).toDataURL('image/png'))
   }
 
@@ -59,7 +61,6 @@ function Cropper() {
         ) : (
           <TheFileInput
             label="Image File"
-            value={url}
             onChange={handleUrlChange}
           />
         )}
@@ -82,30 +83,6 @@ function Cropper() {
       </a>
     </div>
   )
-}
-
-function getRoundedCanvas(sourceCanvas) {
-  const canvas = document.createElement('canvas')
-  const context = canvas.getContext('2d')
-  const width = sourceCanvas.width
-  const height = sourceCanvas.height
-
-  canvas.width = width
-  canvas.height = height
-  context.imageSmoothingEnabled = true
-  context.drawImage(sourceCanvas, 0, 0, width, height)
-  context.globalCompositeOperation = 'destination-in'
-  context.beginPath()
-  context.arc(
-    width / 2,
-    height / 2,
-    Math.min(width, height) / 2,
-    0,
-    2 * Math.PI,
-    true
-  )
-  context.fill()
-  return canvas
 }
 
 export default Cropper
