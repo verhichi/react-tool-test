@@ -15,7 +15,9 @@ function Cropper() {
   const [croppedUrl, setCroppedUrl] = useState('')
 
   useEffect(() => {
-    const el: HTMLImageElement = document.querySelector('.v-cropper') as HTMLImageElement
+    const el: HTMLImageElement = document.querySelector(
+      '.v-cropper'
+    ) as HTMLImageElement
     cropper.current = new CropperJS(el, {
       aspectRatio: 1,
       zoomable: false,
@@ -59,10 +61,7 @@ function Cropper() {
         {uploadType === 'url' ? (
           <TheInput label="Image URL" value={url} onChange={handleUrlChange} />
         ) : (
-          <TheFileInput
-            label="Image File"
-            onChange={handleUrlChange}
-          />
+          <TheFileInput label="Image File" onChange={handleUrlChange} />
         )}
       </div>
       <img className="v-cropper" src={url} alt="cropperjs" />

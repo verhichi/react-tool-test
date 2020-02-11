@@ -36,3 +36,11 @@ html, body, #root, .App{
 a {
   text-decoration: none !important;
 }
+
+.v-pointer {
+  cursor: pointer;
+}
+
+.google-visualization-tooltip {
+  pointer-events: none;
+}

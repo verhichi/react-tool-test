@@ -1,21 +1,18 @@
 import React from 'react'
 import './theSideNav.css'
 import { Link } from 'react-router-dom'
+import routes from 'routes'
 
 function TheSideNav() {
-  return (
-    <nav>
-      <Link to="/crop/my-cropper">
-        <div className="v-nav-link">My Cropper</div>
+  const links = routes.map((page, idx) => {
+    return (
+      <Link key={idx} to={page.path}>
+        <div className="v-nav-link">{page.component.name}</div>
       </Link>
-      <Link to="/crop/croppie">
-        <div className="v-nav-link">Croppie</div>
-      </Link>
-      <Link to="/crop/cropper">
-        <div className="v-nav-link">Cropper</div>
-      </Link>
-    </nav>
-  )
+    )
+  })
+
+  return <nav>{links}</nav>
 }
 
 export default TheSideNav
